@@ -3,3 +3,4 @@
 
 💯 Small app to count word's value based on its leters.
 
+Hse it here: <https://cuentaletras.mauri.app>
