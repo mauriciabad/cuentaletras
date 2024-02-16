@@ -1,0 +1,116 @@
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Calculadora de Valor de Palabra</title>
+    <link
+      rel="icon"
+      href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>💯</text></svg>"
+    />
+    <style>
+      body {
+        text-align: center;
+        height: 100vh;
+        height: 100dvh;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        padding: 1rem;
+        margin: 0;
+        gap: 20px;
+        background-color: #fffdfd;
+        background:
+          linear-gradient(135deg, #faf5f555 25%, transparent 25%) -25px 0/ 50px
+            50px,
+          linear-gradient(225deg, #faf5f5 25%, transparent 25%) -25px 0/ 50px
+            50px,
+          linear-gradient(315deg, #faf5f555 25%, transparent 25%) 0px 0/ 50px 50px,
+          linear-gradient(45deg, #faf5f5 25%, #fffdfd 25%) 0px 0/ 50px 50px;
+      }
+      #wordInput {
+        font-size: 24px;
+        margin-bottom: 20px;
+        border-radius: 1rem;
+        border: 2px solid #222;
+        background-color: #fff;
+        box-shadow: 0 0 1rem rgba(0, 0, 0, 0.1);
+        width: 100%;
+        max-width: 20ch;
+        min-width: 4ch;
+        padding: 0.5rem 1rem;
+      }
+      #wordInput::placeholder {
+        color: #bbb;
+      }
+
+      #wordValue {
+        font-size: 5rem;
+        font-weight: 200;
+      }
+
+      * {
+        font-family: 'Inter', sans-serif;
+        box-sizing: border-box;
+      }
+    </style>
+    <link rel="preconnect" href="https://rsms.me/" />
+    <link rel="stylesheet" href="https://rsms.me/inter/inter.css" />
+  </head>
+  <body>
+    <div id="wordValue">0</div>
+    <input
+      id="wordInput"
+      type="search"
+      oninput="calculateValue()"
+      autofocus
+      autocomplete="off"
+      placeholder="Ej: Casa, Gato, Sol..."
+    />
+
+    <script>
+      const letterValues = {
+        a: 1,
+        b: 3,
+        c: 3,
+        d: 2,
+        e: 1,
+        f: 4,
+        g: 2,
+        h: 4,
+        i: 1,
+        j: 8,
+        k: 5,
+        l: 1,
+        m: 3,
+        n: 1,
+        ñ: 8,
+        o: 1,
+        p: 3,
+        q: 5,
+        r: 1,
+        s: 1,
+        t: 1,
+        u: 1,
+        v: 4,
+        w: 8,
+        x: 8,
+        y: 4,
+        z: 10,
+      }
+
+      function calculateValue() {
+        const input = document.getElementById('wordInput').value.toLowerCase()
+        let value = 0
+        for (let i = 0; i < input.length; i++) {
+          const letter = input[i]
+          if (letter in letterValues) {
+            value += letterValues[letter]
+          }
+        }
+        document.getElementById('wordValue').innerText = value
+      }
+    </script>
+  </body>
+</html>
