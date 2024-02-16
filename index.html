@@ -134,7 +134,11 @@
       }
 
       function calculateValue() {
-        const input = document.getElementById('wordInput').value.toLowerCase()
+        const input = document
+          .getElementById('wordInput')
+          .value.toLowerCase()
+          .normalize('NFD')
+          .replace(/[\u0300-\u036f]/g, '')
         let value = 0
         for (let i = 0; i < input.length; i++) {
           const letter = input[i]
