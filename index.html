@@ -50,6 +50,38 @@
         font-weight: 200;
       }
 
+      #letterValuesDisplay {
+        width: 100%;
+        max-width: 22ch;
+        margin: 0 auto;
+        border-collapse: collapse;
+        text-align: left;
+        box-shadow: 0 0 1rem rgba(0, 0, 0, 0.1);
+        background-color: #fff;
+        border-radius: 0.5rem;
+      }
+
+      #letterValuesDisplay td {
+        padding: 0.5rem;
+      }
+
+      #letterValuesDisplay .value {
+        font-size: 1rem;
+        font-weight: 700;
+        text-align: right;
+        padding-left: 1rem;
+      }
+
+      #letterValuesDisplay .letters {
+        font-size: 0.9rem;
+        font-weight: 400;
+        color: #444;
+        text-transform: uppercase;
+      }
+
+      #letterValuesDisplay .letters > span {
+        margin-inline-end: 1ch;
+      }
       * {
         font-family: 'Inter', sans-serif;
         box-sizing: border-box;
@@ -68,6 +100,7 @@
       autocomplete="off"
       placeholder="Ej: Casa, Gato, Sol..."
     />
+    <table id="letterValuesDisplay"></table>
 
     <script>
       const letterValues = {
@@ -110,6 +143,32 @@
           }
         }
         document.getElementById('wordValue').innerText = value
+      }
+
+      const letterValuesDisplay = document.getElementById('letterValuesDisplay')
+      const lettersByValue = Object.entries(letterValues).reduce(
+        (acc, [letter, value]) => {
+          if (!acc[value]) {
+            acc[value] = []
+          }
+          acc[value].push(letter)
+          return acc
+        },
+        {}
+      )
+      const sortedLettersByValue = Object.entries(lettersByValue).sort(
+        (a, b) => b[0] - a[0]
+      )
+
+      for (const [value, letters] of sortedLettersByValue) {
+        const row = document.createElement('tr')
+        row.innerHTML = `
+          <td class="value">${value}</td>
+          <td class="letters">${letters
+            .map((l) => `<span>${l}</span>`)
+            .join('')}</td>
+        `
+        letterValuesDisplay.appendChild(row)
       }
     </script>
   </body>
