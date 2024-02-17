@@ -1,4 +1,4 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="es">
   <head>
     <meta charset="UTF-8" />
@@ -21,9 +21,8 @@
         margin: 0;
         gap: 20px;
         background-color: #fffdfd;
-        background:
-          linear-gradient(135deg, #faf5f555 25%, transparent 25%) -25px 0/ 50px
-            50px,
+        background: linear-gradient(135deg, #faf5f555 25%, transparent 25%) -25px
+            0/ 50px 50px,
           linear-gradient(225deg, #faf5f5 25%, transparent 25%) -25px 0/ 50px
             50px,
           linear-gradient(315deg, #faf5f555 25%, transparent 25%) 0px 0/ 50px 50px,
@@ -138,6 +137,7 @@
           .getElementById('wordInput')
           .value.toLowerCase()
           .normalize('NFD')
+          .replace(/n\u0303/g, 'ñ')
           .replace(/[\u0300-\u036f]/g, '')
         let value = 0
         for (let i = 0; i < input.length; i++) {
